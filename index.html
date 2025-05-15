@@ -208,12 +208,17 @@
     const errorEl = document.getElementById('error');
     const permissionBtn = document.getElementById('permissionBtn');
 
-    const directions = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest'];
-
     function getDirection(heading) {
-      const index = Math.round(heading / 45) % 8;
-      return directions[index];
-    }
+  if (heading >= 337.5 || heading < 22.5) return 'North';
+  if (heading >= 22.5 && heading < 67.5) return 'Northeast';
+  if (heading >= 67.5 && heading < 112.5) return 'East';
+  if (heading >= 112.5 && heading < 157.5) return 'Southeast';
+  if (heading >= 157.5 && heading < 202.5) return 'South';
+  if (heading >= 202.5 && heading < 247.5) return 'Southwest';
+  if (heading >= 247.5 && heading < 292.5) return 'West';
+  if (heading >= 292.5 && heading < 337.5) return 'Northwest';
+}
+
 
     function updateCompass(heading, accuracy) {
       compassRose.style.transform = `rotate(${heading}deg)`;
